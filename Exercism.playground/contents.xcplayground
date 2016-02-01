@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='osx' display-mode='rendered'>
+    <pages>
+        <page name='Intro'/>
+        <page name='Leap'/>
+        <page name='Hamming'/>
+        <page name='Word Count'/>
+        <page name='Bob'/>
+        <page name='ETL'/>
+        <page name='Anagram'/>
+        <page name='Nucleotide Count'/>
+        <page name='Phone Number'/>
+        <page name='Grade School'/>
+        <page name='Robot Name'/>
+        <page name='Perfect Numbers'/>
+        <page name='Allergies'/>
+        <page name='Accumulate'/>
+        <page name='Sum of Multiples'/>
+        <page name='Twelve Days'/>
+        <page name='Space Age'/>
+        <page name='Gigasecond'/>
+        <page name='Meetup'/>
+        <page name='Triangle'/>
+        <page name='Scrabble Score'/>
+        <page name='Roman Numerals'/>
+        <page name='Binary'/>
+        <page name='Prime Factors'/>
+    </pages>
+</playground>
