@@ -53,42 +53,27 @@ struct PrimeFactors {
     
     let value:Int
     
-    var toArray:[Int] {
-        get {
-            
-            let factor = self.value.firstPrimeFactor
-            guard let realFactor = factor else { return [] }
-            return [realFactor] + PrimeFactors(self.value / realFactor).toArray
-        }
+    init(_ value:Int) {
+        
+        self.value = value
     }
     
-    init(_ value:Int) {
-        self.value = value
+    var toArray:[Int] {
+        
+        guard let factor = self.value.firstFactor else { return [] }
+        
+        return [factor] + PrimeFactors(self.value / factor).toArray
     }
 }
 
 extension Int {
     
-    var isPrime:Bool {
-        guard self > 1 else { return false }
-        guard self > 2 else { return true }
-        
-        return !Array(2..<(self-1)).reduce(false, combine: { acc, value in
-            return acc || value.isFactor(of: self)
-        })
-    }
     
-    var firstPrimeFactor:Int? {
+    var firstFactor:Int? {
+        
         guard self > 1 else { return nil }
         
-        var factor:Int? = nil
-        for value in 2...self where value.isPrime {
-            guard !value.isFactor(of: self) else {
-                factor = value
-                break
-            }
-        }
-        return factor
+        return (2...self).first({ value in value.isFactor(of: self) })
     }
     
     func isFactor(of value:Int) -> Bool {
@@ -98,6 +83,7 @@ extension Int {
 }
 
 extension SequenceType {
+    
     func first(predicate:(Self.Generator.Element) -> Bool) -> Self.Generator.Element? {
         
         for element in self {
@@ -149,9 +135,9 @@ class PrimeFactorsTest: XCTestCase {
         XCTAssertEqual([5, 5, 5, 5], PrimeFactors(625).toArray)
     }
     
-//    func test901255() {
-//        XCTAssertEqual([5, 17, 23, 461], PrimeFactors(901_255).toArray)
-//    }
+    func test901255() {
+        XCTAssertEqual([5, 17, 23, 461], PrimeFactors(901_255).toArray)
+    }
     
 //    func test93819012551() {
 //        XCTAssertEqual([11, 9539, 894_119], PrimeFactors(93_819_012_551).toArray)
